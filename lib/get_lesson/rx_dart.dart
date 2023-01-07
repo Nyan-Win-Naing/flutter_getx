@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_flutter/get_lesson/state_management/get_controller.dart';
 
 class StringName {
   final int i;
@@ -10,6 +11,7 @@ class StringName {
 enum Greet { hello, hi }
 
 class RxDartExp extends StatelessWidget {
+
   final RxString name = "mg mg".obs;
   // final String string = "mg mg";
 
@@ -41,6 +43,7 @@ class RxDartExp extends StatelessWidget {
             // s.value.i.toString(),
             greet.value.toString(),
           ),
+
         ),
       ),
       floatingActionButton: FloatingActionButton(
