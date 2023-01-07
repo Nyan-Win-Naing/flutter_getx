@@ -6,14 +6,15 @@ import 'package:get/get.dart';
 import 'package:get_flutter/get_lesson/state_management/get_builder_controller.dart';
 
 class GetBuilderExp extends StatelessWidget {
+
   final GetBuilderController controller = Get.put(
-    GetBuilderController(),
+    GetBuilderController(10000),
     tag: "hi",
   );
 
 
   final GetBuilderController _controller = Get.put(
-    GetBuilderController(),
+    GetBuilderController(12),
   );
 
   @override
@@ -48,12 +49,12 @@ class GetBuilderExp extends StatelessWidget {
                 print("builder2 init state ${control.controller}");
                 control.controller?.randomIndex(["builder2"]);
               },
-              filter: (GetBuilderController control) {
-                print("builder 2 filter $control");
-                return control.indexI > 100000
-                    ? control.indexI.value = 999999
-                    : control.indexI.value = 111;
-              },
+              // filter: (GetBuilderController control) {
+              //   print("builder 2 filter $control");
+              //   return control.indexI > 100000
+              //       ? control.indexI.value = 999999
+              //       : control.indexI.value = 111;
+              // },
               dispose: (GetBuilderState<GetBuilderController> control) {
                 print("dispose");
               },
