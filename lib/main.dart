@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_flutter/get_lesson/get_builder_exp.dart';
 import 'package:get_flutter/get_lesson/get_controller_exp.dart';
+import 'package:get_flutter/get_lesson/get_dependency.dart';
 import 'package:get_flutter/get_lesson/rx_dart.dart';
 
 void main() {
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: GetControllerExp(),
-      home: GetBuilderExp(),
+      // home: GetBuilderExp(),
+      home: GetDependency(),
     );
   }
 }
