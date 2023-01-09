@@ -9,6 +9,29 @@ import 'package:get_flutter/get_lesson/get_third_page.dart';
 import 'package:get_flutter/get_lesson/middleware/middleware.dart';
 import 'package:get_flutter/get_lesson/rx_dart.dart';
 import 'package:get/get.dart';
+import 'package:get_flutter/get_lesson/translation.dart';
+
+class MyTheme {
+  static ThemeData light() => ThemeData.light().copyWith(
+    appBarTheme: AppBarTheme(
+      backgroundColor: Colors.amber,
+    ),
+    switchTheme: SwitchThemeData(
+      thumbColor: MaterialStateProperty.all(Colors.amber),
+      trackColor: MaterialStateProperty.all(Colors.grey),
+    ),
+  );
+
+  static ThemeData dark() => ThemeData.dark().copyWith(
+    appBarTheme: AppBarTheme(
+      backgroundColor: Colors.grey,
+    ),
+    switchTheme: SwitchThemeData(
+      thumbColor: MaterialStateProperty.all(Colors.green),
+      trackColor: MaterialStateProperty.all(Colors.white),
+    ),
+  );
+}
 
 void main() {
   runApp(const MyApp());
@@ -42,13 +65,45 @@ class MyApp extends StatelessWidget {
         ),
       ],
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: MyTheme.light(),
+      darkTheme: MyTheme.dark(),
+      themeMode: ThemeMode.system,
+      locale: Locale("Myanmar"),
+      fallbackLocale: Locale("English"),
+      translations: MyTranslation(),
       // home: GetControllerExp(),
       // home: GetBuilderExp(),
       // home: GetDependency(),
-      home: GetRoute(),
+      // home: GetRoute(),
+      // home: GetThemeChange(),
+      home: GetTranslationPage(),
+    );
+  }
+}
+
+class GetThemeChange extends StatelessWidget {
+
+  final RxBool isLight = true.obs;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: Center(
+        child: Obx(
+          () => Switch(
+            value: isLight.value,
+            onChanged: (e) {
+              isLight.value = !isLight.value;
+              if(isLight.value) {
+                Get.changeTheme(MyTheme.light());
+              } else {
+                Get.changeTheme(MyTheme.dark());
+              }
+            },
+          ),
+        ),
+      ),
     );
   }
 }
